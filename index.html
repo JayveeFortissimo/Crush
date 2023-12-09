@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Hi crusy ko</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+</head>
+<body>
+
+
+    <div class="ParentDiv">
+
+        <div class="ChildDiv">
+            <h1>Do you love me?</h1>
+
+            <div class="BTNS">
+                <button class="yes">Yes</button>
+                <button class="no">No</button>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+   
+
+    <script >
+
+
+  let buttonNo = document.querySelector('.BTNS .no')
+  let buttonYess = document.querySelector('.BTNS .yes')
+
+  let childDiv = document.querySelector('.ChildDiv');
+
+        buttonNo.addEventListener('click', () => {
+            let maxX = childDiv.clientWidth - buttonNo.clientWidth;
+            let maxY = childDiv.clientHeight - buttonNo.clientHeight;
+            let maxR = childDiv.clientHeight - buttonNo.clientHeight;
+
+            let randomX = Math.floor(Math.random() * maxX);
+            let randomY = Math.floor(Math.random() * maxY);
+            let randomR = Math.floor(Math.random() * maxR);
+
+            buttonNo.style.position = 'absolute';
+            buttonNo.style.top = randomY + 'px';
+            buttonNo.style.left = randomX + 'px';
+            buttonNo.style.right = randomR + 'px';
+        });
+        
+
+        buttonYess.addEventListener('click',()=>{
+            Swal.fire({
+  title: "I love you Too",
+  width: 600,
+  padding: "3em",
+  color: "rgba(255, 0, 0, 0.6)",
+  background: "#fff url(/images/trees.png)",
+  backdrop: `
+  rgba(255, 0, 0, 0.2)
+    url("/images/nyan-cat.gif")
+    left top
+    no-repeat
+  `
+});
+        })
+ 
+
+    </script>
+
+
+
+    
+</body>
+</html>

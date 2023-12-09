@@ -1,0 +1,39 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: rgb(253, 254, 255);
+}
+
+.ParentDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.ChildDiv{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+height: 20rem;
+width: 22rem;
+border-radius: 20px;
+background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ChildDiv button{
+    cursor: pointer;
+    height: 2rem;
+    width: 4rem;
+    background-color: rgb(255, 144, 188);
+    border: none;
+    border-radius: 2px;
+}
+
+.BTNS{
+    margin-top: 100px;
+    display: flex;
+    gap: 40px;
+}
