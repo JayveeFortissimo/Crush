@@ -3,79 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Hi crusy ko</title>
+    <title>Do You Love Me?</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+        
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            height: 70vh;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 30px;
+            position: relative;
+            width: 100%;
+            justify-content: center;
+            z-index: 10;
+            height: 150px; /* Added height to ensure space for button movement */
+        }
+        
+        button {
+            padding: 14px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .yes-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+        }
+        
+        .yes-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .no-btn {
+            background: white;
+            color: #333;
+            border: 2px solid #eee;
+        }
+        
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff6b6b'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center center;
+            opacity: 0;
+            animation: floatHeart 5s linear infinite;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-
-
-    <div class="ParentDiv">
-
-        <div class="ChildDiv">
-            <h1>Do you love me?</h1>
-
-            <div class="BTNS">
-                <button class="yes">Yes</button>
-                <button class="no">No</button>
-            </div>
-
+    <div class="container">
+        <div class="hearts" id="hearts-container"></div>
+        <h1>Do you love me?</h1>
+        <div class="buttons">
+            <button class="yes-btn" id="yes-btn">Yes</button>
+            <button class="no-btn" id="no-btn">No</button>
         </div>
-
     </div>
-    
 
-   
-
-    <script >
-
-
-  let buttonNo = document.querySelector('.BTNS .no')
-  let buttonYess = document.querySelector('.BTNS .yes')
-
-  let childDiv = document.querySelector('.ChildDiv');
-
-        buttonNo.addEventListener('click', () => {
-            let maxX = childDiv.clientWidth - buttonNo.clientWidth;
-            let maxY = childDiv.clientHeight - buttonNo.clientHeight;
-            let maxR = childDiv.clientHeight - buttonNo.clientHeight;
-
-            let randomX = Math.floor(Math.random() * maxX);
-            let randomY = Math.floor(Math.random() * maxY);
-            let randomR = Math.floor(Math.random() * maxR);
-
-            buttonNo.style.position = 'absolute';
-            buttonNo.style.top = randomY + 'px';
-            buttonNo.style.left = randomX + 'px';
-            buttonNo.style.right = randomR + 'px';
-        });
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const container = document.querySelector('.container');
+        const buttonsContainer = document.querySelector('.buttons');
+        const heartsContainer = document.getElementById('hearts-container');
         
-
-        buttonYess.addEventListener('click',()=>{
+        // Function to create hearts background
+        function createHearts() {
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                // Random position
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = Math.random() * 20 + 10;
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                
+                // Random animation delay
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                
+                // Random animation duration
+                heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Create initial hearts
+        createHearts();
+        
+        // Function to move the "No" button to a random position
+        function moveNoButton() {
+            const containerRect = buttonsContainer.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+            
+            // Calculate maximum values for positioning
+            const maxX = containerRect.width - btnRect.width;
+            const maxY = containerRect.height - btnRect.height;
+            
+            // Get random position within the container
+            let randomX = Math.random() * maxX;
+            let randomY = Math.random() * maxY;
+            
+            // Apply the new position
+            noBtn.style.position = 'absolute';
+            noBtn.style.top = `${randomY}px`;
+            noBtn.style.left = `${randomX}px`;
+        }
+        
+        // "No" button click - moves the button to a random position
+        noBtn.addEventListener('click', moveNoButton);
+        
+        // "Yes" button click behavior
+        yesBtn.addEventListener('click', () => {
+            // Create more hearts for celebration
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.style.left = `${Math.random() * 100}%`;
+                    heart.style.bottom = '0';
+                    
+                    const size = Math.random() * 30 + 15;
+                    heart.style.width = `${size}px`;
+                    heart.style.height = `${size}px`;
+                    
+                    heartsContainer.appendChild(heart);
+                }, i * 100);
+            }
+            
+            // Show sweet alert
             Swal.fire({
-  title: "I love you Too",
-  width: 600,
-  padding: "3em",
-  color: "rgba(255, 0, 0, 0.6)",
-  background: "#fff url(/images/trees.png)",
-  backdrop: `
-  rgba(255, 0, 0, 0.2)
-    url("/images/nyan-cat.gif")
-    left top
-    no-repeat
-  `
-});
-        })
- 
-
+                title: 'I love you too! ❤️',
+                html: '<p style="font-size: 1.2rem; margin-top: 20px;">Thank you for loving me!</p>',
+                icon: 'success',
+                confirmButtonText: 'Aww ❤️',
+                confirmButtonColor: '#ff6b6b',
+                width: '400px',
+                padding: '2em',
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdrop: `
+                    rgba(255, 192, 203, 0.4)
+                    url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='40' height='40' fill='%23ff6b6b'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E")
+                    left top
+                    repeat
+                `,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            });
+        });
     </script>
-
-
-
-    
 </body>
 </html>
